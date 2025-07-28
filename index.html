@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TikTok Clone</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+    <!-- Authentication Modal (Hidden by default) -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Log in to TikTok</h2>
+            
+            <div class="auth-options">
+                <button class="auth-button" id="phoneAuthBtn">
+                    <i class="fas fa-mobile-alt"></i> Use phone / email / username
+                </button>
+                <button class="auth-button" id="googleAuthBtn">
+                    <i class="fab fa-google"></i> Continue with Google
+                </button>
+            </div>
+
+            <form id="phoneEmailForm" class="auth-form" style="display: none;">
+                <input type="text" id="emailPhoneInput" placeholder="Email or phone number">
+                <input type="password" id="passwordInput" placeholder="Password">
+                <button type="button" id="signInButton">Log In</button>
+                <button type="button" id="signUpButton" style="display: none;">Sign Up</button>
+            </form>
+
+            <div class="auth-toggle">
+                Don't have an account? <span id="showSignup">Sign up</span>
+                <span id="showLogin" style="display: none;">Log in</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Navigation Bar (For You / Following / Explore / LIVE) -->
+    <div class="top-nav">
+        <span class="nav-item">Following</span>
+        <span class="nav-item active">For You</span>
+    </div>
+
+    <!-- Main Content Container for Videos/Images -->
+    <div class="media-feed-container">
+        <!-- Media Card 1 (Image with Audio) -->
+        <div class="media-card">
+            <!-- Image goes here -->
+            <img class="media-element" src="RIYAN_20250605_195131_⛅Sky Edit By Light Editz.jpg" alt="Beautiful Sky">
+            
+            <!-- Audio for the image -->
+            <audio class="audio-player" controls loop>
+                <source src="song1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <div class="media-content-overlay">
+                <div class="media-info-left">
+                    <span class="media-username">@YourUsername</span>
+                    <p class="media-caption">যাও পাখি বলো তারে সে যেনো ভুলো না মোরে !!! ...more</p>
+                    <span class="media-music"><i class="fas fa-music"></i> Samz Vai - Gaan 1</span>
+                    <span class="media-views"><i class="fas fa-eye"></i> 2.1M views</span>
+                </div>
+                <div class="video-actions-right">
+                    <div class="action-item">
+                        <img src="https://via.placeholder.com/48/fe2c55/fff?text=P" alt="Profile" class="action-profile-pic">
+                        <i class="fas fa-plus"></i> <!-- Add follower icon -->
+                    </div>
+                    <div class="action-item like-button">
+                        <i class="fas fa-heart"></i>
+                        <span class="like-count">1.5M</span>
+                    </div>
+                    <div class="action-item">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>25.4K</span>
+                    </div>
+                    <div class="action-item">
+                        <i class="fas fa-share"></i>
+                        <span>12.8K</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Media Card 2 (Image with Audio) -->
+        <div class="media-card">
+            <!-- Image goes here -->
+            <img class="media-element" src="Screenshot_2025-07-21-14-43-25-76_d9c8eed15f0b8ad47c5b98e84a1715fc.jpg" alt="Rj Rocky Pic">
+            
+            <!-- Audio for the image -->
+            <audio class="audio-player" controls loop>
+                <source src="song2.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <div class="media-content-overlay">
+                <div class="media-info-left">
+                    <span class="media-username">@Rj Rocky</span>
+                    <p class="media-caption">ইচ্ছে গুলো আজ মরে গেছে<br>__বুঝেছি মানুষ সুযোগ পেলে<br>-বদলায় জীবনের রং!!😅💔</p>
+                    <span class="media-music"><i class="fas fa-music"></i> Samz Vai - Gaan 2</span>
+                    <span class="media-views"><i class="fas fa-eye"></i> 890K views</span>
+                </div>
+                <div class="video-actions-right">
+                    <div class="action-item">
+                        <img src="https://via.placeholder.com/48/25f4ee/fff?text=A" alt="Profile" class="action-profile-pic">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="action-item like-button">
+                        <i class="fas fa-heart"></i>
+                        <span class="like-count">789K</span>
+                    </div>
+                    <div class="action-item">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>18.2K</span>
+                    </div>
+                    <div class="action-item">
+                        <i class="fas fa-share"></i>
+                        <span>9.5K</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add more media cards as needed -->
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active" data-nav-target="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" data-nav-target="friends">
+            <i class="fas fa-user-friends"></i>
+            <span>Friends</span>
+        </a>
+        <a href="#" class="nav-item create-button" data-nav-target="create">
+            <i class="fas fa-plus"></i>
+        </a>
+        <a href="#" class="nav-item" data-nav-target="inbox">
+            <i class="fas fa-inbox"></i>
+            <span>Inbox</span>
+        </a>
+        <a href="#" class="nav-item" data-nav-target="profile">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+        <!-- Admin icon -->
+        <a href="#" class="nav-item" data-nav-target="admin">
+            <i class="fas fa-user-shield"></i>
+            <span>Admin</span>
+        </a>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profilePage" class="profile-page">
+        <div class="profile-header">
+            <div class="profile-pic-container">
+                <img src="https://via.placeholder.com/100/fe2c55/fff?text=P" alt="User Profile Picture" class="profile-pic">
+                <span class="add-photo-icon"><i class="fas fa-plus"></i></span>
+            </div>
+            <h3 class="profile-username">@johndoe</h3>
+            <span class="profile-handle">John Doe</span>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="number">123</span>
+                    <span>Following</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">45.6M</span>
+                    <span>Followers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">789M</span>
+                    <span>Likes</span>
+                </div>
+            </div>
+            <p class="profile-bio">Welcome to my TikTok! Enjoying life one video at a time. 😊</p>
+            <div class="profile-actions">
+                <button class="profile-action-btn follow-button">Follow</button>
+                <button class="profile-action-btn edit-profile">Edit profile</button>
+                <span class="profile-share-icon"><i class="fas fa-share"></i></span>
+            </div>
+        </div>
+
+        <div class="profile-tabs">
+            <span class="profile-tab-item active" data-tab="videos"><i class="fas fa-video"></i></span>
+            <span class="profile-tab-item" data-tab="liked"><i class="fas fa-heart"></i></span>
+            <span class="profile-tab-item" data-tab="drafts"><i class="fas fa-archive"></i></span>
+        </div>
+
+        <div id="profileVideosContent" class="profile-content" style="display: grid;">
+            <!-- Placeholder for user's videos -->
+            <div class="profile-video-thumbnail">
+                <img src="https://via.placeholder.com/150x200?text=Video+1" alt="Video Thumbnail">
+                <div class="profile-video-overlay"><i class="fas fa-play"></i> 1.2M</div>
+            </div>
+            <div class="profile-video-thumbnail">
+                <img src="https://via.placeholder.com/150x200?text=Video+2" alt="Video Thumbnail">
+                <div class="profile-video-overlay"><i class="fas fa-play"></i> 890K</div>
+            </div>
+            <div class="profile-video-thumbnail">
+                <img src="https://via.placeholder.com/150x200?text=Video+3" alt="Video Thumbnail">
+                <div class="profile-video-overlay"><i class="fas fa-play"></i> 2.1M</div>
+            </div>
+             <div class="profile-video-thumbnail">
+                <img src="https://via.placeholder.com/150x200?text=Video+4" alt="Video Thumbnail">
+                <div class="profile-video-overlay"><i class="fas fa-play"></i> 550K</div>
+            </div>
+            <div class="profile-video-thumbnail">
+                <img src="https://via.placeholder.com/150x200?text=Video+5" alt="Video Thumbnail">
+                <div class="profile-video-overlay"><i class="fas fa-play"></i> 3.4M</div>
+            </div>
+            <div class="profile-video-thumbnail">
+                <img src="https://via.placeholder.com/150x200?text=Video+6" alt="Video Thumbnail">
+                <div class="profile-video-overlay"><i class="fas fa-play"></i> 1.8M</div>
+            </div>
+        </div>
+
+        <div id="profileLikedContent" class="profile-content" style="display: none;">
+            <!-- Placeholder for liked videos -->
+            <div class="profile-video-thumbnail">
+                <img src="https://via.placeholder.com/150x200?text=Liked+Video+1" alt="Liked Video Thumbnail">
+                <div class="profile-video-overlay"><i class="fas fa-play"></i> 900K</div>
+            </div>
+            <div class="profile-video-thumbnail">
+                <img src="https://via.placeholder.com/150x200?text=Liked+Video+2" alt="Liked Video Thumbnail">
+                <div class="profile-video-overlay"><i class="fas fa-play"></i> 1.1M</div>
+            </div>
+        </div>
+
+        <div id="profileDraftsContent" class="drafts-content" style="display: none;">
+            <!-- Placeholder for drafts -->
+            <i class="fas fa-cloud"></i>
+            <p>Your drafts will appear here.</p>
+        </div>
+    </div>
+
+    <!-- Inbox Page -->
+    <div id="inboxPage" class="inbox-page">
+        <div class="inbox-header">
+            <i class="fas fa-arrow-left header-icon" id="inboxBackBtn"></i>
+            <h2>All Activity</h2>
+            <i class="fas fa-paper-plane header-icon"></i>
+        </div>
+        <div class="inbox-categories">
+            <span class="inbox-category-item active">All</span>
+            <span class="inbox-category-item">Likes</span>
+            <span class="inbox-category-item">Comments</span>
+            <span class="inbox-category-item">Follows</span>
+            <span class="inbox-category-item">Mentions</span>
+        </div>
+        <div class="inbox-feed">
+            <div class="inbox-item">
+                <img src="https://via.placeholder.com/48/fe2c55/fff?text=M" alt="User" class="inbox-item-pic">
+                <div class="inbox-item-content">
+                    <div class="inbox-item-name">User123 liked your video</div>
+                    <div class="inbox-item-message">"Great content!"</div>
+                </div>
+                <span class="inbox-item-time">2h ago</span>
+            </div>
+            <div class="inbox-item">
+                <img src="https://via.placeholder.com/48/25f4ee/fff?text=N" alt="User" class="inbox-item-pic">
+                <div class="inbox-item-content">
+                    <div class="inbox-item-name">SomeoneElse started following you</div>
+                    <div class="inbox-item-message"></div>
+                </div>
+                <span class="inbox-item-time">1d ago</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Section (Hidden by default) -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-header">
+            <h2><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</h2>
+            <p>শুধুমাত্র অ্যাডমিনরা এই কন্টেন্ট দেখতে পাবে।</p>
+        </div>
+        <div class="admin-content">
+            <ul>
+                <li>ইউজার ম্যানেজ করুন</li>
+                <li>ভিডিও রিপোর্ট দেখুন</li>
+                <li>নতুন ফিচারের পরীক্ষা করুন</li>
+            </ul>
+            <button class="admin-action-btn">সদস্য তালিকা দেখুন</button>
+            <button class="admin-action-btn">সেটিংস পরিবর্তন করুন</button>
+        </div>
+    </div>
+
+    <!-- Your JavaScript file -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>

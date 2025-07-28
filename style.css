@@ -1,0 +1,766 @@
+/* Style.css - TikTok UI Clone */
+
+/* Root Variables */
+:root {
+    --tiktok-red: #fe2c55;
+    --tiktok-black: #000000;
+    --tiktok-white: #ffffff;
+    --tiktok-grey: #888888;
+    --tiktok-light-grey: #444444;
+    --tiktok-blue: #25f4ee; 
+}
+
+/* Basic Reset and Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0; 
+    background-color: var(--tiktok-black);
+    color: var(--tiktok-white);
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    height: 100vh; 
+}
+
+/* Top Navigation */
+.top-nav {
+    display: flex;
+    justify-content: center; /* Centered */
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    z-index: 50; /* Z-index below modal, above media feed */
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.top-nav .nav-item {
+    margin: 0 15px;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.top-nav .nav-item.active {
+    color: #fff;
+}
+
+.top-nav .nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+/* Main Media Feed Container (for images/videos) */
+.media-feed-container { /* Renamed from video-feed-container */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll; 
+    scroll-snap-type: y mandatory; 
+    -webkit-overflow-scrolling: touch; 
+    display: flex;
+    flex-direction: column;
+}
+
+.media-card { /* Renamed from video-card */
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    scroll-snap-align: start; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000; 
+}
+
+.media-element { /* Renamed from video-player to be generic for img/video */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.audio-player { /* Style for the new audio player */
+    position: absolute;
+    bottom: 150px; /* Adjust position to avoid overlap with bottom nav */
+    left: 15px;
+    width: calc(100% - 30px); /* Full width within padding */
+    z-index: 10; /* Ensure it's above overlay but below text */
+    opacity: 0.8;
+}
+
+.media-content-overlay { /* Renamed from video-content-overlay */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    padding: 15px;
+    box-sizing: border-box;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 20%); 
+}
+
+.media-info-left { /* Renamed from video-info-left */
+    color: #fff;
+    margin-bottom: 20px; 
+}
+
+.media-username { /* Renamed from video-username */
+    font-weight: bold;
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.media-caption { /* Renamed from video-caption */
+    font-size: 0.95em;
+    margin-bottom: 5px;
+}
+
+.media-music { /* Renamed from video-music */
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+.media-music i {
+    margin-right: 5px;
+}
+
+.media-views { /* Renamed from video-views */
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-top: 5px;
+    display: block;
+}
+
+.media-views i {
+    margin-right: 5px;
+}
+
+.video-actions-right { /* Still works for media cards */
+    position: absolute;
+    bottom: 90px; 
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.action-item i {
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+.action-item span {
+    font-size: 0.8em;
+}
+
+.action-profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    object-fit: cover;
+    margin-bottom: 5px;
+    position: relative; 
+}
+
+.action-item .fa-plus {
+    position: absolute;
+    bottom: -10px; 
+    background-color: #e21c67; 
+    color: #fff;
+    border-radius: 50%;
+    padding: 3px;
+    font-size: 0.8em;
+}
+
+.like-button .fa-heart.liked {
+    color: #e21c67; 
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 100;
+}
+
+.bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.bottom-nav .nav-item i {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.bottom-nav .nav-item.active {
+    color: #fff;
+}
+
+.bottom-nav .nav-item.create-button i {
+    background-color: #fff;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 1.5em;
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+/* Auth Modal */
+.auth-modal {
+    display: none; 
+    position: fixed;
+    z-index: 200; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-modal-content {
+    background-color: #1a1a1a;
+    margin: auto;
+    padding: 30px 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    color: #fff;
+    text-align: center;
+}
+
+.auth-modal-content h2 {
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    color: #fff;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.auth-options {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; 
+    margin-bottom: 25px;
+}
+
+.auth-button {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 12px 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #444;
+    border-color: #777;
+}
+
+.auth-button i {
+    font-size: 1.2em;
+}
+
+/* Specific Google button style */
+#googleAuthBtn {
+    background-color: #4285F4; 
+    border: none;
+}
+#googleAuthBtn:hover {
+    background-color: #357ae8;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.auth-form input {
+    padding: 12px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #fff;
+    font-size: 1em;
+}
+
+.auth-form input::placeholder {
+    color: #bbb;
+}
+
+.auth-form button {
+    background-color: #e21c67; 
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+    background-color: #c91757;
+}
+
+.auth-toggle {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+.auth-toggle span {
+    color: #00f2ea; 
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.auth-toggle span:hover {
+    text-decoration: underline;
+}
+
+/* Profile Page */
+.profile-page, .inbox-page, .admin-panel { /* Include admin-panel here */
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    color: #fff;
+    overflow-y: scroll;
+    padding-bottom: 60px; 
+    box-sizing: border-box;
+    z-index: 90; /* Lower than modal (200) but higher than media-feed (none) */
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    background-color: #1a1a1a;
+    position: relative;
+    padding-top: 60px; 
+}
+
+.profile-pic-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+}
+
+.add-photo-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #e21c67;
+    color: #fff;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 0.8em;
+    cursor: pointer;
+    border: 2px solid #000;
+}
+
+.profile-username {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.profile-handle {
+    font-size: 0.9em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 15px;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-item .number {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.stat-item span {
+    font-size: 0.9em;
+    color: rgba(255,255,255,0.7);
+}
+
+.profile-bio {
+    text-align: center;
+    padding: 0 20px;
+    font-size: 0.9em;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 25px;
+}
+
+.profile-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.profile-action-btn {
+    background-color: #e21c67;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-action-btn.follow-button {
+    background-color: #e21c67;
+}
+.profile-action-btn.unfollow-button {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+}
+
+.profile-action-btn:hover {
+    background-color: #c91757;
+}
+
+.profile-share-icon {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.profile-share-icon:hover {
+    background-color: #555;
+}
+
+.profile-tabs {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background-color: #000;
+    position: sticky;
+    top: 0; /* Changed from 60px to 0 for consistency */
+    z-index: 10;
+}
+
+.profile-tab-item {
+    padding: 15px 0;
+    flex-grow: 1;
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.profile-tab-item.active {
+    color: #fff;
+}
+
+.profile-tab-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+}
+
+.profile-content {
+    padding: 10px;
+    display: none; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 5px;
+}
+
+.profile-video-thumbnail {
+    width: 100%;
+    padding-bottom: 150%; 
+    position: relative;
+    background-color: #333; 
+    overflow: hidden;
+}
+
+.profile-video-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-video-overlay {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    color: #fff;
+    font-size: 0.8em;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    padding: 3px 6px;
+    border-radius: 3px;
+}
+
+.profile-video-overlay i {
+    margin-right: 3px;
+}
+
+.drafts-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    font-size: 1.1em;
+    color: rgba(255,255,255,0.7);
+    gap: 10px;
+}
+.drafts-content i {
+    font-size: 2em;
+}
+
+/* Inbox Page */
+.inbox-page {
+    /* Styles are mostly inherited from .profile-page, just adjust specific elements */
+}
+
+.inbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.inbox-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.inbox-header .header-icon {
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.inbox-categories {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 15px;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background-color: #000;
+    white-space: nowrap; 
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.inbox-categories::-webkit-scrollbar {
+    display: none;
+}
+
+.inbox-category-item {
+    background-color: #333;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex-shrink: 0; 
+}
+
+.inbox-category-item.active {
+    background-color: #e21c67;
+    color: #fff;
+}
+
+.inbox-category-item:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.inbox-feed {
+    padding: 15px;
+}
+
+.inbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.inbox-item-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.inbox-item-content {
+    flex-grow: 1;
+}
+
+.inbox-item-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.inbox-item-message {
+    font-size: 0.9em;
+    color: rgba(255,255,255,0.8);
+}
+
+.inbox-item-time {
+    font-size: 0.8em;
+    color: rgba(255,255,255,0.6);
+    flex-shrink: 0;
+}
+
+/* Follow/Unfollow Button Styles */
+.follow-button {
+    background-color: #e21c67;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.follow-button:hover {
+    background-color: #c91757;
+}
+
+.unfollow-button {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.unfollow-button:hover {
+    background-color: #555;
+}
